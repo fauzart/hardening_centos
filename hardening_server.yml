@@ -1,0 +1,40 @@
+- name: Hardening CIS Server
+  hosts: new
+  vars_file: 
+    - vars/setup
+  tasks:
+    - name: Create user for operational
+      user:
+        name: ops
+        comment: User For Remote Sudo
+        group: wheel
+        state: present
+        password: '{{ "{{ item }}" | password_hash("sha512") }}'
+      loop: "{{ ops }}"
+      tags: opsuser
+
+    - name: Create user for Dev
+      user:
+        name: "{{ item }}"
+        comment: User for Dev
+        group: wheel
+        state: present
+        password: '{{ "DevRemoteACC" | password_hash("sha512") }}'
+      loop: "{{ dev }}"
+      tags: devuser
+    
+    - name: Ensure unused package are not installed
+      yum:
+        name: "{{ item }}"
+        state: removed
+      loop: "{{ nopackage }}"
+      tags: uninstallpkg
+    
+    - name: Ensure requirement package are installed
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ package }}"
+      tags: installpkg
+
+    

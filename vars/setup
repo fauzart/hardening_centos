@@ -1,0 +1,37 @@
+ops: '"OPSRemote00!"'
+dev:
+  - Dev001
+  - Dev002
+  - Dev003
+  - Dev004
+  - Dev005
+  - Dev006
+  - Dev007
+  - Dev008
+  - Dev009
+  - Dev010
+nopackage:
+  - nftables
+  - xorg-x11-server*
+  - avahi-autoipd
+  - avahi
+  - cups
+  - dhcp
+  - openldap-servers
+  - bind
+  - vsftpd
+  - httpd
+  - samba
+  - squid
+  - ypserv
+  - telnet-server
+  - nfs-utils
+  - rpcbind
+  - rsync
+  - ypbind
+  - rsh
+  - talk
+  - openldap-clients
+  - iptables-service
+package:
+  - git
